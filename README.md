@@ -1,6 +1,6 @@
 # CreataChain 기반 텔레그램 미션수행 게임 미니앱
 
-![CreataChain Logo](https://creatachain.com/logo.png)
+
 
 ## 📋 프로젝트 개요
 
@@ -54,8 +54,8 @@ CreataChain 블록체인 기반의 텔레그램 미니앱으로, 게임형 미�
 
 1. **레포지토리 클론**
 ```bash
-git clone https://github.com/kiikiihajohn/creata-mission-game.git
-cd creata-mission-game
+git clone https://github.com/foani/mission.git
+cd Creata_Mission
 ```
 
 2. **의존성 설치**
