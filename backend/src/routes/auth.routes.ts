@@ -131,6 +131,7 @@ function validateMessageTimestamp(message: string, maxAgeMinutes: number = 5): b
   } catch (error) {
     return false;
   }
+}
 
 /**
  * 인증 라우트 등록 함수
@@ -264,7 +265,8 @@ export default async function authRoutes(fastify: FastifyInstance) {
         code: 'INTERNAL_ERROR',
       });
     }
-  
+  });
+
     /**
      * POST /auth/install-confirm
      * Creata Wallet 설치 확인 및 인증 완료

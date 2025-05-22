@@ -206,9 +206,10 @@ async function checkDuplicateParticipation(
   });
   
   return !!existingGame;
+}
 
 /**
- * 게임 라우트 등록 함수 
+ * 게임 라우트 등록 함수
  * Fastify 인스턴스에 게임 관련 API 등록
  */
 export default async function gameRoutes(fastify: FastifyInstance) {
