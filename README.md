@@ -157,7 +157,7 @@ docker run -p 3000:3000 creata-mission
 
 ## 📝 라이센스
 
-MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참고하세요.
+MIT License - 자세한 내용은 [LICENSE](./LICENSE) 파일을 참고하세요.
 
 ## 🤝 배껴가시려면 USDT 주셔요.
 
