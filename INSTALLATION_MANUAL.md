@@ -276,11 +276,11 @@ npm run dev
 **관리자 대시보드**: http://localhost:3001
 
 ### 4. 전체 서비스 동시 실행
+각 서비스는 별도의 터미널에서 다음과 같이 실행할 수 있습니다.
 ```bash
-# 루트 디렉터리에서 (package.json의 scripts 활용)
-npm run dev:all
-
-# 또는 개별 터미널에서 각각 실행
+cd backend && npm run dev       # 백엔드
+cd frontend && npm run dev      # 프론트엔드
+cd admin-dashboard && npm run dev  # 관리자 대시보드
 ```
 
 ---
