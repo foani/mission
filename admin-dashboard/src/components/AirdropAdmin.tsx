@@ -175,8 +175,8 @@
        
        console.log('에어드롭 처리 시작:', selectedAirdrops)
        
-       // 블록체인 에어드롭 실행 (실제 구현 시)
-       // const blockchainService = new BlockchainService()
+      // 블록체인 에어드롭 실행 (실제 구현 시)
+      // const blockchainService = new BlockchainAirdropService()
        // 
        // for (const airdrop of selectedAirdrops) {
        //   const result = await blockchainService.executeAirdrop(
