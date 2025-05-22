@@ -8,7 +8,7 @@
  
  # 프론트엔드 의존성 설치
  COPY frontend/package*.json ./
- RUN npm ci --only=production
+ RUN npm ci
  
  # 프론트엔드 소스 복사 및 빌드
  COPY frontend/ ./
@@ -21,14 +21,17 @@
  
  # 백엔드 의존성 설치
  COPY backend/package*.json ./
- RUN npm ci --only=production
+ RUN npm ci
  
  # 백엔드 소스 복사 및 빌드
  COPY backend/ ./
  RUN npm run build
- 
- # Prisma 클라이언트 생성
- RUN npx prisma generate
+
+# Prisma 클라이언트 생성
+RUN npx prisma generate
+
+# 필요 없는 개발 패키지 제거
+RUN npm prune --omit=dev
  
  # Stage 3: 프로덕션 이미지
  FROM node:20-alpine
