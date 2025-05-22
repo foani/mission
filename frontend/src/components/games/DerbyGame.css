@@ -1,0 +1,535 @@
+ /**
+  * DerbyGame.css - Lazy Derby 게임 스타일
+  * 애니메이션이 중요한 경주 게임 UI
+  */
+ 
+ /* 메인 컴포넌트 */
+ .derby-game {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 20px;
+   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   border-radius: 16px;
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+   color: white;
+   min-height: 600px;
+ }
+ 
+ /* 헤더 영역 */
+ .derby-header {
+   text-align: center;
+   margin-bottom: 30px;
+   padding: 20px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 12px;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .derby-title {
+   font-size: 2.5rem;
+   font-weight: 700;
+   margin: 0 0 10px 0;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+   background: linear-gradient(45deg, #FFD700, #FFA500);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+ }
+ 
+ .derby-subtitle {
+   font-size: 1.1rem;
+   margin: 0;
+   opacity: 0.9;
+   font-weight: 400;
+ /* 관리자 정보 표시 (개발 모드) */
+ .admin-info {
+   background: rgba(255, 255, 0, 0.1);
+   border: 1px solid rgba(255, 255, 0, 0.3);
+   border-radius: 8px;
+   padding: 10px;
+   margin-bottom: 20px;
+   text-align: center;
+   font-size: 0.9rem;
+   color: #FFD700;
+ }
+ 
+ .horse-speed {
+   font-size: 0.8rem;
+   opacity: 0.7;
+   background: rgba(255, 255, 255, 0.1);
+   padding: 2px 4px;
+   border-radius: 4px;
+ }
+ 
+ /* 베팅 단계 */
+ 
+ /* 베팅 단계 */
+ .betting-phase {
+   background: rgba(255, 255, 255, 0.08);
+   border-radius: 12px;
+   padding: 30px;
+   margin-bottom: 20px;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .phase-title {
+   text-align: center;
+   font-size: 1.5rem;
+   font-weight: 600;
+   margin-bottom: 25px;
+   color: #FFD700;
+ }
+ 
+ .horse-selection {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 15px;
+   margin-bottom: 30px;
+ }
+ 
+ .horse-button {
+   background: rgba(255, 255, 255, 0.1);
+   border: 2px solid rgba(255, 255, 255, 0.2);
+   border-radius: 12px;
+   padding: 20px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .horse-button:hover {
+   background: rgba(255, 255, 255, 0.15);
+   border-color: rgba(255, 255, 255, 0.4);
+   transform: translateY(-2px);
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .horse-button.selected {
+   background: rgba(255, 215, 0, 0.2);
+   border-color: #FFD700;
+   box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+ }
+ 
+ .horse-info {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 8px;
+   color: white;
+ }
+ 
+ .horse-emoji {
+   font-size: 2.5rem;
+   margin-bottom: 5px;
+ }
+ 
+ .horse-name {
+   font-size: 1.1rem;
+   font-weight: 600;
+ }
+ 
+ .horse-lane {
+   font-size: 0.9rem;
+   opacity: 0.8;
+   background: rgba(255, 255, 255, 0.2);
+   padding: 4px 8px;
+   border-radius: 6px;
+ }
+ 
+ .start-button {
+   display: block;
+   width: 200px;
+   margin: 0 auto;
+   padding: 15px 30px;
+   font-size: 1.2rem;
+   font-weight: 600;
+   background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+   color: white;
+   border: none;
+   border-radius: 25px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .start-button:hover:not(:disabled) {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .start-button:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+ }
+ 
+ /* 카운트다운 단계 */
+ .countdown-phase {
+   background: rgba(255, 255, 255, 0.08);
+   border-radius: 12px;
+   padding: 60px 30px;
+   text-align: center;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .countdown-display {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 20px;
+ }
+ 
+ .countdown-number {
+   font-size: 6rem;
+   font-weight: 800;
+   margin: 0;
+   background: linear-gradient(45deg, #FFD700, #FFA500);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+   animation: pulse 1s ease-in-out infinite;
+ }
+ 
+ @keyframes pulse {
+   0%, 100% { transform: scale(1); }
+   50% { transform: scale(1.1); }
+ }
+ 
+ .countdown-text {
+   font-size: 1.3rem;
+   margin: 0;
+   opacity: 0.9;
+ }
+ 
+ /* 경주 트랙 */
+ .race-track {
+   background: rgba(255, 255, 255, 0.08);
+   border-radius: 12px;
+   padding: 30px;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .track-header {
+   text-align: center;
+   margin-bottom: 30px;
+ }
+ 
+ .track-title {
+   font-size: 1.5rem;
+   font-weight: 600;
+   margin-bottom: 10px;
+   color: #FFD700;
+ }
+ 
+ .selected-horse-info {
+   margin: 0;
+   font-size: 1rem;
+   opacity: 0.9;
+ }
+ 
+ .selected-horse {
+   color: #FFD700;
+   font-weight: 600;
+ }
+ 
+ .racing-lanes {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+ }
+ 
+ .race-lane {
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   padding: 15px;
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 8px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+ }
+ 
+ .lane-info {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 4px;
+   min-width: 80px;
+   font-size: 0.9rem;
+ }
+ 
+ .lane-number {
+   background: rgba(255, 255, 255, 0.2);
+   color: white;
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 600;
+ }
+ 
+ .horse-name {
+   font-weight: 500;
+   text-align: center;
+ }
+ 
+ .horse-rank {
+   background: #FFD700;
+   color: #000;
+   padding: 2px 6px;
+   border-radius: 4px;
+   font-size: 0.8rem;
+   font-weight: 600;
+ }
+ 
+ .track {
+   flex: 1;
+   position: relative;
+   height: 40px;
+   background: linear-gradient(90deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+   border-radius: 20px;
+   border: 2px solid rgba(255, 255, 255, 0.2);
+   overflow: hidden;
+ }
+ 
+ .track-line {
+   position: absolute;
+   top: 50%;
+   left: 0;
+   right: 0;
+   height: 2px;
+   background: repeating-linear-gradient(
+     90deg,
+     rgba(255, 255, 255, 0.3) 0px,
+     rgba(255, 255, 255, 0.3) 10px,
+     transparent 10px,
+     transparent 20px
+   );
+   transform: translateY(-50%);
+ }
+ 
+ .horse-runner {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   font-size: 1.8rem;
+   transition: left 0.1s ease-out;
+   z-index: 2;
+   animation: bounce 0.5s ease-in-out infinite alternate;
+ }
+ 
+ @keyframes bounce {
+   from { transform: translateY(-50%) translateY(-2px); }
+   to { transform: translateY(-50%) translateY(2px); }
+ }
+ 
+ .horse-runner.selected {
+   filter: drop-shadow(0 0 8px #FFD700);
+   animation: selectedBounce 0.3s ease-in-out infinite alternate;
+ }
+ 
+ @keyframes selectedBounce {
+   from { transform: translateY(-50%) translateY(-3px) scale(1.1); }
+   to { transform: translateY(-50%) translateY(3px) scale(1.1); }
+ }
+ 
+ .horse-runner.finished {
+   animation: celebrate 0.5s ease-in-out infinite;
+ }
+ 
+ @keyframes celebrate {
+   0%, 100% { transform: translateY(-50%) rotate(-5deg); }
+   50% { transform: translateY(-50%) rotate(5deg); }
+ }
+ 
+ .finish-line {
+   position: absolute;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   width: 4px;
+   background: repeating-linear-gradient(
+     0deg,
+     #FFD700 0px,
+     #FFD700 8px,
+     #000 8px,
+     #000 16px
+   );
+   z-index: 1;
+ }
+ 
+ .progress-bar {
+   height: 6px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 3px;
+   overflow: hidden;
+   margin-top: 8px;
+ }
+ 
+ .progress-fill {
+   height: 100%;
+   transition: width 0.1s ease-out;
+   border-radius: 3px;
+   opacity: 0.8;
+ }
+ 
+ /* 결과 단계 */
+ .result-phase {
+   background: rgba(255, 255, 255, 0.08);
+   border-radius: 12px;
+   padding: 40px;
+   text-align: center;
+   backdrop-filter: blur(10px);
+ }
+ 
+ .result-content {
+   max-width: 600px;
+   margin: 0 auto;
+ }
+ 
+ .result-title {
+   font-size: 2rem;
+   font-weight: 700;
+   margin-bottom: 25px;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .winner-info {
+   margin-bottom: 30px;
+   padding: 20px;
+   background: rgba(255, 255, 255, 0.1);
+   border-radius: 8px;
+ }
+ 
+ .winner-announcement {
+   font-size: 1.3rem;
+   margin-bottom: 10px;
+ }
+ 
+ .winner-name {
+   color: #FFD700;
+   font-weight: 600;
+   font-size: 1.1em;
+ }
+ 
+ .score-info {
+   font-size: 1.2rem;
+   margin: 0;
+ }
+ 
+ .score {
+   color: #4ECDC4;
+   font-weight: 700;
+   font-size: 1.2em;
+ }
+ 
+ .final-rankings {
+   margin-bottom: 30px;
+ }
+ 
+ .final-rankings h4 {
+   font-size: 1.3rem;
+   margin-bottom: 15px;
+   color: #FFD700;
+ }
+ 
+ .ranking-list {
+   list-style: none;
+   padding: 0;
+   margin: 0;
+ }
+ 
+ .ranking-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 12px 20px;
+   margin-bottom: 8px;
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 8px;
+   border-left: 4px solid #FFD700;
+ }
+ 
+ .rank-number {
+   font-weight: 700;
+   color: #FFD700;
+   min-width: 40px;
+ }
+ 
+ .rank-horse {
+   flex: 1;
+   font-weight: 500;
+   text-align: left;
+   margin-left: 15px;
+ }
+ 
+ .your-choice-badge {
+   background: #4ECDC4;
+   color: #000;
+   padding: 4px 8px;
+   border-radius: 4px;
+   font-size: 0.8rem;
+   font-weight: 600;
+ }
+ 
+ .play-again-button {
+   padding: 15px 40px;
+   font-size: 1.1rem;
+   font-weight: 600;
+   background: linear-gradient(45deg, #667eea, #764ba2);
+   color: white;
+   border: none;
+   border-radius: 25px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .play-again-button:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+ }
+ 
+ /* 반응형 디자인 */
+ @media (max-width: 768px) {
+   .derby-game {
+     padding: 15px;
+     margin: 10px;
+   }
+   
+   .derby-title {
+     font-size: 2rem;
+   }
+   
+   .horse-selection {
+     grid-template-columns: 1fr;
+   }
+   
+   .countdown-number {
+     font-size: 4rem;
+   }
+   
+   .race-lane {
+     flex-direction: column;
+     gap: 10px;
+   }
+   
+   .track {
+     width: 100%;
+     margin-top: 10px;
+   }
+   
+   .lane-info {
+     flex-direction: row;
+     min-width: auto;
+     gap: 10px;
+   }
+   
+   .ranking-item {
+     flex-direction: column;
+     gap: 8px;
+     text-align: center;
+   }
+ }

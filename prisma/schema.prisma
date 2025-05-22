@@ -1,0 +1,160 @@
+// Prisma schema for CreataChain Telegram Mission Game DApp
+// Database: PostgreSQL
+// CreataChain Catena 메인넷 기반 EVM 호환 블록체인 게임
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 사용자 정보 및 지갑 인증 상태
+model User {
+  id                String    @id @default(uuid())
+  walletAddress     String    @unique @map("wallet_address")
+  telegramId        String?   @unique @map("telegram_id")
+  language          String    @default("en") // en, ko, vi, ja
+  isWalletVerified  Boolean   @default(false) @map("is_wallet_verified")
+  isWalletInstalled Boolean   @default(false) @map("is_wallet_installed")
+  score             Int       @default(0) // 누적 점수 (캐시용)
+  lastPlayedAt      DateTime? @map("last_played_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  gameLogs      GameLog[]
+  airdropQueue  AirdropQueue[]
+  achievements  UserAchievement[]
+
+  @@map("users")
+  @@index([walletAddress])
+  @@index([isWalletVerified, isWalletInstalled])
+  @@index([score(sort: Desc)])
+}
+
+// 게임 참여 기록 및 결과
+model GameLog {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @map("user_id")
+  gameType  String   @map("game_type") // 'binary', 'derby', 'darts'
+  round     Int      // 게임 라운드 번호
+  score     Int      // 게임에서 획득한 점수
+  result    Json     // 게임 결과 상세 정보
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("game_logs")
+  @@index([userId])
+  @@index([gameType, createdAt])
+  @@index([createdAt])
+}
+
+// 에어드랍 대기열 및 보상 관리
+model AirdropQueue {
+  id          Int       @id @default(autoincrement())
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String    @map("user_id")
+  rewardType  String    @map("reward_type") // 'ranking', 'event', 'referral', 'daily'
+  ctaAmount   Decimal   @map("cta_amount") @db.Decimal(20, 8) // CTA 토큰 수량
+  txHash      String?   @map("tx_hash") // 블록체인 트랜잭션 해시
+  status      String    @default("pending") // 'pending', 'success', 'fail'
+  createdAt   DateTime  @default(now()) @map("created_at")
+  processedAt DateTime? @map("processed_at")
+  errorMessage String? @map("error_message") // 실패 시 에러 메시지
+
+  @@map("airdrop_queue")
+  @@index([status])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+// 게임 설정 관리 (관리자가 조정 가능)
+model GameSettings {
+  id                    Int      @id @default(autoincrement())
+  gameType              String   @unique @map("game_type") // 'binary', 'derby', 'darts'
+  totalRounds           Int      @default(3) @map("total_rounds")
+  choiceTimeSeconds     Int      @default(10) @map("choice_time_seconds")
+  resultDisplaySeconds  Int      @default(3) @map("result_display_seconds")
+  pointsPerWin          Int      @default(100) @map("points_per_win")
+  pointsPerLoss         Int      @default(0) @map("points_per_loss")
+  isActive              Boolean  @default(true) @map("is_active")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  @@map("game_settings")
+  @@index([gameType])
+  @@index([isActive])
+}
+
+// 어드민 사용자 관리
+model AdminUser {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  role         String    @default("admin") // 'admin', 'editor', 'viewer'
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLogin    DateTime? @map("last_login")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("admin_users")
+  @@index([email])
+  @@index([isActive])
+}
+
+// 게임별 설정 및 라운드 관리 (향후 확장용)
+model GameRound {
+  id          Int      @id @default(autoincrement())
+  gameType    String   @map("game_type") // 'binary', 'derby', 'darts'
+  roundNumber Int      @map("round_number")
+  startTime   DateTime @map("start_time")
+  endTime     DateTime @map("end_time")
+  isActive    Boolean  @default(true) @map("is_active")
+  settings    Json     // 게임별 설정 (난이도, 특수 룰 등)
+  result      Json?    // 라운드 결과 (우승자, 통계 등)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@map("game_rounds")
+  @@unique([gameType, roundNumber])
+  @@index([gameType, isActive])
+  @@index([startTime, endTime])
+}
+
+// 사용자별 성취 및 뱃지 (향후 확장용)
+model UserAchievement {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @map("user_id")
+  achievementType String @map("achievement_type") // '첫승리', '연승', '마라토너' 등
+  gameType     String?  @map("game_type") // 특정 게임 관련 성취일 경우
+  level        Int      @default(1) // 성취 레벨 (1, 2, 3...)
+  progress     Int      @default(0) // 현재 진행도
+  target       Int      // 목표값
+  isCompleted  Boolean  @default(false) @map("is_completed")
+  completedAt  DateTime? @map("completed_at")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  @@map("user_achievements")
+  @@unique([userId, achievementType, gameType])
+  @@index([userId, isCompleted])
+  @@index([achievementType])
+}
+
+// 시스템 설정 및 관리 (향후 확장용)
+model SystemConfig {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     Json     // 설정값 (JSON 형태)
+  category  String   // 'game', 'reward', 'system' 등
+  description String? // 설정 설명
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("system_config")
+  @@index([category])
+  @@index([isActive])
+}

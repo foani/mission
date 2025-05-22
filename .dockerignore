@@ -1,0 +1,115 @@
+ # CreataChain 미션 게임 미니앱 - Docker 빌드 제외 파일
+ 
+ # 의존성 폴더
+ node_modules/
+ */node_modules/
+ npm-debug.log*
+ yarn-debug.log*
+ yarn-error.log*
+ 
+ # 빌드 산출물
+ dist/
+ build/
+ .next/
+ 
+ # 개발 도구
+ .vscode/
+ .idea/
+ *.swp
+ *.swo
+ 
+ # 로그 파일
+ logs/
+ *.log
+ 
+ # 런타임 데이터
+ pids/
+ *.pid
+ *.seed
+ *.pid.lock
+ 
+ # 커버리지 리포트
+ coverage/
+ .nyc_output
+ 
+ # 환경 변수 파일 (보안)
+ .env
+ .env.local
+ .env.development.local
+ .env.test.local
+ .env.production.local
+ 
+ # OS 생성 파일
+ .DS_Store
+ .DS_Store?
+ ._*
+ .Spotlight-V100
+ .Trashes
+ ehthumbs.db
+ Thumbs.db
+ 
+ # Git 관련
+ .git/
+ .gitignore
+ README.md
+ .github/
+ 
+ # 개발/테스트 관련
+ .eslintrc.*
+ .prettierrc
+ jest.config.*
+ *.test.ts
+ *.test.js
+ *.spec.ts
+ *.spec.js
+ test/
+ tests/
+ __tests__/
+ 
+ # TypeScript 설정 (런타임에 불필요)
+ tsconfig.json
+ *.tsbuildinfo
+ 
+ # 문서
+ docs/
+ *.md
+ *.txt
+ 
+ # 임시 파일
+ tmp/
+ temp/
+ .tmp/
+ 
+ # Docker 관련 (재귀 방지)
+ Dockerfile*
+ .dockerignore
+ docker-compose*.yml
+ 
+ # 프로젝트 설정
+ .editorconfig
+ .gitattributes
+ 
+ # 팩키지 매니저 잠금 파일 제외 (특정 상황에서만)
+ # yarn.lock
+ # package-lock.json
+ 
+ # Prisma 관련 (필요한 것만 포함)
+ prisma/migrations/
+ prisma/dev.db*
+ 
+ # 백업 파일
+ *.bak
+ *.backup
+ *.old
+ 
+ # 캐시
+ .cache/
+ *.cache
+ 
+ # 개발 서버 설정
+ vite.config.ts.timestamp-*
+ .vite/
+ 
+ # 에디터 설정
+ .vscode/
+ .idea/

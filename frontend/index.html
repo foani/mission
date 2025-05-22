@@ -1,0 +1,82 @@
+ <!doctype html>
+ <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <meta name="description" content="CreataChain Mission Game - Telegram Mini App for blockchain gaming with CTA rewards" />
+     <meta name="keywords" content="creatachain, telegram, miniapp, blockchain, game, CTA, mission" />
+     
+     <!-- Telegram Mini App 메타 태그 -->
+     <meta name="telegram:card" content="app" />
+     <meta name="telegram:site" content="@CreataChain" />
+     <meta name="telegram:title" content="CreataChain Mission Game" />
+     <meta name="telegram:description" content="Play games, complete missions, earn CTA tokens!" />
+     
+     <!-- PWA 지원 -->
+     <meta name="theme-color" content="#6366f1" />
+     <meta name="mobile-web-app-capable" content="yes" />
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+     
+     <title>CreataChain Mission Game</title>
+     
+     <!-- Telegram WebApp SDK -->
+     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+     
+     <!-- 글로벌 스타일 -->
+     <style>
+       * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+       }
+       
+       body {
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+         background: var(--tg-theme-bg-color, #ffffff);
+         color: var(--tg-theme-text-color, #000000);
+         overflow-x: hidden;
+       }
+       
+       #root {
+         min-height: 100vh;
+         width: 100%;
+       }
+       
+       /* 로딩 애니메이션 */
+       .loading {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         min-height: 100vh;
+         flex-direction: column;
+         gap: 1rem;
+       }
+       
+       .spinner {
+         width: 40px;
+         height: 40px;
+         border: 4px solid #f3f3f3;
+         border-top: 4px solid #6366f1;
+         border-radius: 50%;
+         animation: spin 1s linear infinite;
+       }
+       
+       @keyframes spin {
+         0% { transform: rotate(0deg); }
+         100% { transform: rotate(360deg); }
+       }
+     </style>
+   </head>
+   <body>
+     <div id="root">
+       <!-- 초기 로딩 화면 -->
+       <div class="loading">
+         <div class="spinner"></div>
+         <p>Loading CreataChain Mission Game...</p>
+       </div>
+     </div>
+     <script type="module" src="/src/main.tsx"></script>
+   </body>
+ </html>

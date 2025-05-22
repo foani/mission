@@ -1,0 +1,163 @@
+ /* CreataChain 미션 게임 글로벌 스타일 */
+ 
+ :root {
+   /* 하드코딩된 CreataChain 브랜드 컬러 */
+   --creata-primary: #4a90e2;
+   --creata-secondary: #f5a623;
+   --creata-success: #27ae60;
+   --creata-danger: #e74c3c;
+   --creata-warning: #f39c12;
+   --creata-info: #3498db;
+   --creata-dark: #2c3e50;
+   --creata-light: #ecf0f1;
+   
+   /* 하드코딩된 게임 테마 컬러 */
+   --game-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+   --card-bg: rgba(255, 255, 255, 0.95);
+   --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   
+   /* 하드코딩된 폰트 설정 */
+   --font-primary: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+   --font-size-sm: 0.875rem;
+   --font-size-base: 1rem;
+   --font-size-lg: 1.125rem;
+   --font-size-xl: 1.25rem;
+   --font-size-2xl: 1.5rem;
+   
+   /* 하드코딩된 레이아웃 간격 */
+   --spacing-xs: 0.25rem;
+   --spacing-sm: 0.5rem;
+   --spacing-md: 1rem;
+   --spacing-lg: 1.5rem;
+   --spacing-xl: 2rem;
+   --spacing-2xl: 3rem;
+   
+   /* 하드코딩된 애니메이션 설정 */
+   --transition-fast: 0.15s ease-in-out;
+   --transition-normal: 0.3s ease-in-out;
+   --transition-slow: 0.5s ease-in-out;
+ }
+ 
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ 
+ body {
+   font-family: var(--font-primary);
+   font-size: var(--font-size-base);
+   line-height: 1.6;
+   color: var(--creata-dark);
+   background: var(--game-bg);
+   min-height: 100vh;
+   overflow-x: hidden;
+ }
+ 
+ #root {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+ }
+ 
+ /* 텔레그램 미니앱 스타일 */
+ .telegram-viewport {
+   height: 100vh;
+   max-height: 100vh;
+   overflow-y: auto;
+   -webkit-overflow-scrolling: touch;
+ }
+ 
+ /* 유틸리티 클래스 */
+ .text-center { text-align: center; }
+ .text-left { text-align: left; }
+ .text-right { text-align: right; }
+ 
+ .font-sm { font-size: var(--font-size-sm); }
+ .font-base { font-size: var(--font-size-base); }
+ .font-lg { font-size: var(--font-size-lg); }
+ .font-xl { font-size: var(--font-size-xl); }
+ .font-2xl { font-size: var(--font-size-2xl); }
+ 
+ .font-bold { font-weight: 700; }
+ .font-semibold { font-weight: 600; }
+ .font-medium { font-weight: 500; }
+ 
+ .mb-xs { margin-bottom: var(--spacing-xs); }
+ .mb-sm { margin-bottom: var(--spacing-sm); }
+ .mb-md { margin-bottom: var(--spacing-md); }
+ .mb-lg { margin-bottom: var(--spacing-lg); }
+ .mb-xl { margin-bottom: var(--spacing-xl); }
+ 
+ .mt-xs { margin-top: var(--spacing-xs); }
+ .mt-sm { margin-top: var(--spacing-sm); }
+ .mt-md { margin-top: var(--spacing-md); }
+ .mt-lg { margin-top: var(--spacing-lg); }
+ .mt-xl { margin-top: var(--spacing-xl); }
+ 
+ .p-xs { padding: var(--spacing-xs); }
+ .p-sm { padding: var(--spacing-sm); }
+ .p-md { padding: var(--spacing-md); }
+ .p-lg { padding: var(--spacing-lg); }
+ .p-xl { padding: var(--spacing-xl); }
+ 
+ /* 반응형 디자인 */
+ @media (max-width: 768px) {
+   :root {
+     --font-size-base: 0.875rem;
+     --font-size-lg: 1rem;
+     --font-size-xl: 1.125rem;
+     --font-size-2xl: 1.25rem;
+   }
+   
+   body {
+     font-size: var(--font-size-base);
+   }
+ }
+ 
+ /* 로딩 애니메이션 */
+ @keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
+ 
+ @keyframes pulse {
+   0% { opacity: 1; }
+   50% { opacity: 0.5; }
+   100% { opacity: 1; }
+ }
+ 
+ @keyframes fadeIn {
+   from { opacity: 0; transform: translateY(10px); }
+   to { opacity: 1; transform: translateY(0); }
+ }
+ 
+ .animate-spin {
+   animation: spin 1s linear infinite;
+ }
+ 
+ .animate-pulse {
+   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+ }
+ 
+ .animate-fadeIn {
+   animation: fadeIn 0.3s ease-in-out;
+ }
+ 
+ /* 스크롤바 스타일 */
+ ::-webkit-scrollbar {
+   width: 6px;
+ }
+ 
+ ::-webkit-scrollbar-track {
+   background: rgba(0, 0, 0, 0.1);
+ }
+ 
+ ::-webkit-scrollbar-thumb {
+   background: var(--creata-primary);
+   border-radius: 3px;
+ }
+ 
+ ::-webkit-scrollbar-thumb:hover {
+   background: var(--creata-dark);
+ }

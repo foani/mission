@@ -1,0 +1,473 @@
+ /* 
+  * CreataChain Binary Options Game - Ultra Modern UI
+  * 네온 사이버펑크 + 프리미엄 트레이딩 플랫폼 스타일
+  */
+ 
+ :root {
+   /* 컬러 시스템 - 프리미엄 트레이딩 테마 */
+   --bg-primary: #0D1421;
+   --bg-secondary: #1A2332;
+   --bg-card: rgba(26, 35, 50, 0.95);
+   --bg-glass: rgba(255, 255, 255, 0.05);
+   
+   /* 네온 액센트 컬러 */
+   --neon-green: #00FF88;
+   --neon-red: #FF0066;
+   --neon-blue: #00D4FF;
+   --neon-purple: #8B5CF6;
+   --neon-yellow: #FFD700;
+   
+   /* 그라데이션 */
+   --gradient-up: linear-gradient(135deg, #00FF88, #00D4FF);
+   --gradient-down: linear-gradient(135deg, #FF0066, #FF6B35);
+   --gradient-neutral: linear-gradient(135deg, #8B5CF6, #06B6D4);
+   
+   /* 텍스트 컬러 */
+   --text-primary: #FFFFFF;
+   --text-secondary: #94A3B8;
+   --text-accent: #00FF88;
+   
+   /* 쉐도우 & 글로우 */
+   --shadow-neon: 0 0 20px rgba(0, 255, 136, 0.3);
+   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+   --glow-green: 0 0 15px rgba(0, 255, 136, 0.5);
+   --glow-red: 0 0 15px rgba(255, 0, 102, 0.5);
+   --glow-blue: 0 0 15px rgba(0, 212, 255, 0.5);
+ }
+ 
+ /* 메인 게임 컨테이너 */
+ .binary-game {
+   min-height: 100vh;
+   background: var(--bg-primary);
+   background-image: 
+     radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+     radial-gradient(circle at 80% 20%, rgba(255, 0, 102, 0.1) 0%, transparent 50%),
+     radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+   padding: 20px;
+   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+   color: var(--text-primary);
+   position: relative;
+   overflow-x: hidden;
+ }
+ 
+ /* 로딩 상태 */
+ .binary-game.loading {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
+ }
+ 
+ .loading-spinner {
+   font-size: 3rem;
+   animation: spin 1s linear infinite;
+ }
+ 
+ @keyframes spin {
+   from { transform: rotate(0deg); }
+   to { transform: rotate(360deg); }
+ }
+ 
+ /* 게임 헤더 */
+ .game-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 30px;
+   padding: 20px;
+   background: var(--bg-glass);
+   backdrop-filter: blur(10px);
+   border-radius: 16px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+ }
+ 
+ .round-info {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+ }
+ 
+ .round-number {
+   font-size: 0.9rem;
+   color: var(--text-secondary);
+   font-weight: 600;
+ }
+ 
+ .total-score {
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--neon-yellow);
+   text-shadow: var(--glow-blue);
+ }
+ 
+ /* 프리미엄 차트 섹션 */
+ .chart-section {
+   background: var(--bg-card);
+   border-radius: 20px;
+   padding: 25px;
+   margin-bottom: 25px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   box-shadow: var(--shadow-card);
+   position: relative;
+   overflow: hidden;
+ }
+ 
+ .chart-section::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 2px;
+   background: var(--gradient-neutral);
+   animation: shimmer 2s infinite;
+ }
+ 
+ @keyframes shimmer {
+   0% { left: -100%; }
+   100% { left: 100%; }
+ }
+ 
+ .crypto-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+ 
+ .crypto-symbol {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+ }
+ 
+ .symbol-icon {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   background: var(--gradient-neutral);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 1.1rem;
+ }
+ 
+ .symbol-name {
+   font-size: 1.3rem;
+   font-weight: 700;
+ }
+ 
+ .current-price {
+   text-align: right;
+ }
+ 
+ .price-value {
+   font-size: 2rem;
+   font-weight: 700;
+   color: var(--neon-blue);
+   text-shadow: var(--glow-blue);
+ }
+ 
+ .price-change {
+   font-size: 0.9rem;
+   font-weight: 600;
+   margin-top: 5px;
+ }
+ 
+ .price-change.positive {
+   color: var(--neon-green);
+ }
+ 
+ .price-change.negative {
+   color: var(--neon-red);
+ }
+ 
+ /* 미니 차트 효과 */
+ .mini-chart {
+   height: 120px;
+   margin: 20px 0;
+   position: relative;
+   background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 136, 0.1) 100%);
+   border-radius: 12px;
+   overflow: hidden;
+ }
+ 
+ .chart-line {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   height: 60%;
+   background: var(--gradient-up);
+   clip-path: polygon(0 100%, 15% 85%, 30% 90%, 45% 70%, 60% 75%, 75% 60%, 90% 65%, 100% 50%, 100% 100%);
+   animation: chartPulse 2s ease-in-out infinite alternate;
+ }
+ 
+ @keyframes chartPulse {
+   0% { opacity: 0.7; }
+   100% { opacity: 1; }
+ }
+ 
+ /* 선택 버튼 섹션 */
+ .choice-section {
+   margin-bottom: 25px;
+ }
+ 
+ .countdown-timer {
+   text-align: center;
+   margin-bottom: 25px;
+ }
+ 
+ .countdown-display {
+   font-size: 3rem;
+   font-weight: 700;
+   color: var(--neon-yellow);
+   text-shadow: var(--glow-blue);
+   animation: pulse 1s ease-in-out infinite;
+ }
+ 
+ @keyframes pulse {
+   0%, 100% { transform: scale(1); }
+   50% { transform: scale(1.05); }
+ }
+ 
+ .countdown-label {
+   font-size: 0.9rem;
+   color: var(--text-secondary);
+   margin-top: 5px;
+ }
+ 
+ /* 프리미엄 선택 버튼들 */
+ .choice-buttons {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 15px;
+   margin-top: 20px;
+ }
+ 
+ .choice-btn {
+   padding: 20px;
+   border: none;
+   border-radius: 16px;
+   font-size: 1.1rem;
+   font-weight: 700;
+   cursor: pointer;
+   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+   position: relative;
+   overflow: hidden;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+ }
+ 
+ .choice-btn::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: -100%;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+   transition: left 0.5s;
+ }
+ 
+ .choice-btn:hover::before {
+   left: 100%;
+ }
+ 
+ .choice-btn.up {
+   background: var(--gradient-up);
+   color: white;
+   box-shadow: var(--glow-green);
+ }
+ 
+ .choice-btn.down {
+   background: var(--gradient-down);
+   color: white;
+   box-shadow: var(--glow-red);
+ }
+ 
+ .choice-btn:hover {
+   transform: translateY(-3px) scale(1.02);
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .choice-btn:active {
+   transform: translateY(-1px) scale(0.98);
+ }
+ 
+ .choice-btn:disabled {
+   opacity: 0.6;
+   cursor: not-allowed;
+   transform: none;
+ }
+ 
+ .choice-btn.selected {
+   animation: selectedPulse 0.5s ease-out;
+   transform: scale(1.05);
+ }
+ 
+ @keyframes selectedPulse {
+   0% { transform: scale(1); }
+   50% { transform: scale(1.1); }
+   100% { transform: scale(1.05); }
+ }
+ 
+ /* 예측 아이콘 */
+ .prediction-icon {
+   font-size: 1.5rem;
+   margin-right: 10px;
+ }
+ 
+ /* 결과 표시 섹션 */
+ .result-section {
+   text-align: center;
+   padding: 30px;
+   background: var(--bg-card);
+   border-radius: 20px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   margin-bottom: 25px;
+ }
+ 
+ .result-animation {
+   font-size: 4rem;
+   margin-bottom: 15px;
+   animation: resultBounce 0.6s ease-out;
+ }
+ 
+ @keyframes resultBounce {
+   0% { transform: scale(0); }
+   50% { transform: scale(1.2); }
+   100% { transform: scale(1); }
+ }
+ 
+ .result-text {
+   font-size: 1.5rem;
+   font-weight: 700;
+   margin-bottom: 10px;
+ }
+ 
+ .result-text.win {
+   color: var(--neon-green);
+   text-shadow: var(--glow-green);
+ }
+ 
+ .result-text.lose {
+   color: var(--neon-red);
+   text-shadow: var(--glow-red);
+ }
+ 
+ .score-display {
+   font-size: 1.2rem;
+   color: var(--text-secondary);
+ }
+ 
+ /* 게임 완료 섹션 */
+ .game-finished {
+   text-align: center;
+   padding: 40px;
+   background: var(--bg-card);
+   border-radius: 20px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+ }
+ 
+ .final-score {
+   font-size: 3rem;
+   font-weight: 700;
+   color: var(--neon-yellow);
+   text-shadow: var(--glow-blue);
+   margin-bottom: 20px;
+ }
+ 
+ .performance-message {
+   font-size: 1.1rem;
+   color: var(--text-secondary);
+   margin-bottom: 30px;
+ }
+ 
+ /* 액션 버튼 */
+ .action-buttons {
+   display: flex;
+   gap: 15px;
+   justify-content: center;
+ }
+ 
+ .action-btn {
+   padding: 15px 30px;
+   border: none;
+   border-radius: 12px;
+   font-size: 1rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+ }
+ 
+ .action-btn.primary {
+   background: var(--gradient-neutral);
+   color: white;
+ }
+ 
+ .action-btn.secondary {
+   background: transparent;
+   color: var(--text-secondary);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+ }
+ 
+ .action-btn:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+ }
+ 
+ /* 모바일 최적화 */
+ @media (max-width: 480px) {
+   .binary-game {
+     padding: 15px;
+   }
+   
+   .game-header {
+     padding: 15px;
+     margin-bottom: 20px;
+   }
+   
+   .chart-section {
+     padding: 20px;
+   }
+   
+   .choice-btn {
+     padding: 18px;
+     font-size: 1rem;
+   }
+   
+   .countdown-display {
+     font-size: 2.5rem;
+   }
+   
+   .price-value {
+     font-size: 1.5rem;
+   }
+   
+   .final-score {
+     font-size: 2.5rem;
+   }
+ }
+ 
+ /* 접근성 향상 */
+ .choice-btn:focus,
+ .action-btn:focus {
+   outline: 2px solid var(--neon-blue);
+   outline-offset: 2px;
+ }
+ 
+ /* 진동 효과 */
+ @keyframes vibrate {
+   0%, 100% { transform: translateX(0); }
+   25% { transform: translateX(-2px); }
+   75% { transform: translateX(2px); }
+ }
+ 
+ .vibrate {
+   animation: vibrate 0.3s ease-in-out;
+ }

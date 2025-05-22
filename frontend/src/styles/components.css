@@ -1,0 +1,479 @@
+ /* CreataChain 미션 게임 컴포넌트 스타일 */
+ 
+ /* === 버튼 스타일 === */
+ .btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: var(--spacing-sm);
+   padding: var(--spacing-sm) var(--spacing-lg);
+   border: none;
+   border-radius: 8px;
+   font-family: inherit;
+   font-size: var(--font-size-base);
+   font-weight: 600;
+   text-decoration: none;
+   cursor: pointer;
+   transition: var(--transition-normal);
+   min-height: 44px;
+   min-width: 120px;
+   white-space: nowrap;
+ }
+ 
+ .btn:disabled {
+   opacity: 0.5;
+   cursor: not-allowed;
+   transform: none !important;
+ }
+ 
+ .btn:hover:not(:disabled) {
+   transform: translateY(-2px);
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .btn:active:not(:disabled) {
+   transform: translateY(0);
+ }
+ 
+ /* 버튼 변형 */
+ .btn-primary {
+   background: var(--creata-primary);
+   color: white;
+ }
+ 
+ .btn-primary:hover:not(:disabled) {
+   background: #357abd;
+ }
+ 
+ .btn-secondary {
+   background: var(--creata-secondary);
+   color: white;
+ }
+ 
+ .btn-secondary:hover:not(:disabled) {
+   background: #d4941b;
+ }
+ 
+ .btn-success {
+   background: var(--creata-success);
+   color: white;
+ }
+ 
+ .btn-success:hover:not(:disabled) {
+   background: #229954;
+ }
+ 
+ .btn-danger {
+   background: var(--creata-danger);
+   color: white;
+ }
+ 
+ .btn-danger:hover:not(:disabled) {
+   background: #c0392b;
+ }
+ 
+ .btn-outline {
+   background: transparent;
+   color: var(--creata-primary);
+   border: 2px solid var(--creata-primary);
+ }
+ 
+ .btn-outline:hover:not(:disabled) {
+   background: var(--creata-primary);
+   color: white;
+ }
+ 
+ .btn-ghost {
+   background: rgba(255, 255, 255, 0.1);
+   color: var(--creata-dark);
+   backdrop-filter: blur(10px);
+ }
+ 
+ .btn-ghost:hover:not(:disabled) {
+   background: rgba(255, 255, 255, 0.2);
+ }
+ 
+ /* 버튼 크기 */
+ .btn-sm {
+   padding: var(--spacing-xs) var(--spacing-md);
+   font-size: var(--font-size-sm);
+   min-height: 36px;
+   min-width: 80px;
+ }
+ 
+ .btn-lg {
+   padding: var(--spacing-md) var(--spacing-xl);
+   font-size: var(--font-size-lg);
+   min-height: 52px;
+   min-width: 160px;
+ }
+ 
+ .btn-full {
+   width: 100%;
+ }
+ 
+ /* === 카드 스타일 === */
+ .card {
+   background: var(--card-bg);
+   border-radius: 16px;
+   box-shadow: var(--card-shadow);
+   padding: var(--spacing-lg);
+   backdrop-filter: blur(10px);
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   transition: var(--transition-normal);
+ }
+ 
+ .card:hover {
+   transform: translateY(-4px);
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+ }
+ 
+ .card-header {
+   padding-bottom: var(--spacing-md);
+   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+   margin-bottom: var(--spacing-lg);
+ }
+ 
+ .card-title {
+   font-size: var(--font-size-xl);
+   font-weight: 700;
+   color: var(--creata-dark);
+   margin-bottom: var(--spacing-xs);
+ }
+ 
+ .card-subtitle {
+   font-size: var(--font-size-sm);
+   color: #666;
+   margin: 0;
+ }
+ 
+ .card-body {
+   flex: 1;
+ }
+ 
+ .card-footer {
+   padding-top: var(--spacing-md);
+   border-top: 1px solid rgba(0, 0, 0, 0.1);
+   margin-top: var(--spacing-lg);
+   display: flex;
+   gap: var(--spacing-sm);
+   justify-content: flex-end;
+ }
+ 
+ /* === 지갑 인증 컴포넌트 === */
+ .wallet-auth {
+   text-align: center;
+   max-width: 400px;
+   margin: 0 auto;
+   padding: var(--spacing-xl);
+ }
+ 
+ .wallet-icon {
+   width: 80px;
+   height: 80px;
+   margin: 0 auto var(--spacing-lg);
+   background: var(--creata-primary);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 2rem;
+   color: white;
+ }
+ 
+ .wallet-status {
+   padding: var(--spacing-sm) var(--spacing-md);
+   border-radius: 8px;
+   font-size: var(--font-size-sm);
+   font-weight: 600;
+   margin-bottom: var(--spacing-md);
+ }
+ 
+ .wallet-status.connected {
+   background: rgba(39, 174, 96, 0.1);
+   color: var(--creata-success);
+   border: 1px solid var(--creata-success);
+ }
+ 
+ .wallet-status.disconnected {
+   background: rgba(231, 76, 60, 0.1);
+   color: var(--creata-danger);
+   border: 1px solid var(--creata-danger);
+ }
+ 
+ /* === 게임 허브 컴포넌트 === */
+ .game-hub {
+   padding: var(--spacing-lg);
+   max-width: 1200px;
+   margin: 0 auto;
+ }
+ 
+ .game-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: var(--spacing-lg);
+   margin-top: var(--spacing-xl);
+ }
+ 
+ .game-card {
+   position: relative;
+   overflow: hidden;
+   cursor: pointer;
+   transition: var(--transition-normal);
+ }
+ 
+ .game-card::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+   transform: translateX(-100%);
+   transition: transform 0.6s;
+ }
+ 
+ .game-card:hover::before {
+   transform: translateX(100%);
+ }
+ 
+ .game-icon {
+   width: 60px;
+   height: 60px;
+   margin: 0 auto var(--spacing-md);
+   background: var(--creata-secondary);
+   border-radius: 12px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5rem;
+   color: white;
+ }
+ 
+ .game-title {
+   font-size: var(--font-size-lg);
+   font-weight: 700;
+   margin-bottom: var(--spacing-sm);
+   text-align: center;
+ }
+ 
+ .game-description {
+   font-size: var(--font-size-sm);
+   color: #666;
+   text-align: center;
+   margin-bottom: var(--spacing-lg);
+   line-height: 1.5;
+ }
+ 
+ .game-stats {
+   display: flex;
+   justify-content: space-between;
+   margin-bottom: var(--spacing-md);
+   font-size: var(--font-size-sm);
+ }
+ 
+ .stat-item {
+   text-align: center;
+ }
+ 
+ .stat-value {
+   font-weight: 700;
+   color: var(--creata-primary);
+   display: block;
+ }
+ 
+ .stat-label {
+   color: #666;
+   font-size: 0.75rem;
+ }
+ 
+ /* === 로딩 컴포넌트 === */
+ .loading {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: var(--spacing-xl);
+   gap: var(--spacing-md);
+ }
+ 
+ .spinner {
+   width: 24px;
+   height: 24px;
+   border: 3px solid rgba(74, 144, 226, 0.2);
+   border-top: 3px solid var(--creata-primary);
+   border-radius: 50%;
+   animation: spin 1s linear infinite;
+ }
+ 
+ .loading-text {
+   color: var(--creata-primary);
+   font-weight: 600;
+ }
+ 
+ /* === 모달 컴포넌트 === */
+ .modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: var(--spacing-lg);
+   z-index: 1000;
+   animation: fadeIn 0.2s ease-out;
+ }
+ 
+ .modal {
+   background: white;
+   border-radius: 16px;
+   max-width: 500px;
+   width: 100%;
+   max-height: 90vh;
+   overflow-y: auto;
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+   animation: fadeIn 0.3s ease-out;
+ }
+ 
+ .modal-header {
+   padding: var(--spacing-lg);
+   border-bottom: 1px solid #eee;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+ 
+ .modal-title {
+   font-size: var(--font-size-lg);
+   font-weight: 700;
+   margin: 0;
+ }
+ 
+ .modal-close {
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   cursor: pointer;
+   color: #666;
+   padding: var(--spacing-xs);
+   border-radius: 4px;
+   transition: var(--transition-fast);
+ }
+ 
+ .modal-close:hover {
+   background: #f5f5f5;
+   color: var(--creata-dark);
+ }
+ 
+ .modal-body {
+   padding: var(--spacing-lg);
+ }
+ 
+ .modal-footer {
+   padding: var(--spacing-lg);
+   border-top: 1px solid #eee;
+   display: flex;
+   gap: var(--spacing-sm);
+   justify-content: flex-end;
+ }
+ 
+ /* === 알림 컴포넌트 === */
+ .alert {
+   padding: var(--spacing-md);
+   border-radius: 8px;
+   margin-bottom: var(--spacing-md);
+   border: 1px solid;
+   display: flex;
+   align-items: center;
+   gap: var(--spacing-sm);
+ }
+ 
+ .alert-success {
+   background: rgba(39, 174, 96, 0.1);
+   color: var(--creata-success);
+   border-color: var(--creata-success);
+ }
+ 
+ .alert-error {
+   background: rgba(231, 76, 60, 0.1);
+   color: var(--creata-danger);
+   border-color: var(--creata-danger);
+ }
+ 
+ .alert-warning {
+   background: rgba(243, 156, 18, 0.1);
+   color: var(--creata-warning);
+   border-color: var(--creata-warning);
+ }
+ 
+ .alert-info {
+   background: rgba(52, 152, 219, 0.1);
+   color: var(--creata-info);
+   border-color: var(--creata-info);
+ }
+ 
+ /* === 게임 전용 스타일 === */
+ .game-container {
+   padding: var(--spacing-lg);
+   max-width: 600px;
+   margin: 0 auto;
+ }
+ 
+ .game-board {
+   background: var(--card-bg);
+   border-radius: 16px;
+   padding: var(--spacing-xl);
+   text-align: center;
+   margin-bottom: var(--spacing-lg);
+   min-height: 300px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .game-controls {
+   display: flex;
+   gap: var(--spacing-md);
+   justify-content: center;
+   flex-wrap: wrap;
+ }
+ 
+ .game-score {
+   background: var(--creata-dark);
+   color: white;
+   padding: var(--spacing-sm) var(--spacing-md);
+   border-radius: 8px;
+   font-weight: 700;
+   margin-bottom: var(--spacing-md);
+ }
+ 
+ /* === 반응형 디자인 === */
+ @media (max-width: 768px) {
+   .card {
+     padding: var(--spacing-md);
+   }
+   
+   .game-grid {
+     grid-template-columns: 1fr;
+   }
+   
+   .btn {
+     min-width: 100px;
+   }
+   
+   .btn-lg {
+     min-width: 140px;
+   }
+   
+   .game-controls {
+     flex-direction: column;
+   }
+   
+   .modal {
+     margin: var(--spacing-md);
+   }
+ }

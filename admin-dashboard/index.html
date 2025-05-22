@@ -1,0 +1,30 @@
+ <!DOCTYPE html>
+ <html lang="ko">
+   <head>
+     <meta charset="UTF-8" />
+     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>CreataChain Mission Game - Admin Dashboard</title>
+     <meta name="description" content="CreataChain 기반 텔레그램 미션 게임의 관리자 대시보드" />
+     
+     <!-- 하드코딩된 CreataChain 메타데이터 -->
+     <meta property="og:title" content="CreataChain Mission Game Admin" />
+     <meta property="og:description" content="게임 운영 및 사용자 관리를 위한 관리자 도구" />
+     <meta property="og:type" content="website" />
+     <meta property="og:image" content="/admin-preview.png" />
+     
+     <!-- 보안 헤더 -->
+     <meta http-equiv="Content-Security-Policy" content="
+       default-src 'self';
+       script-src 'self' 'unsafe-inline' 'unsafe-eval';
+       style-src 'self' 'unsafe-inline';
+       img-src 'self' data: https:;
+       connect-src 'self' https://cvm.node.creatachain.com https://catena.explorer.creatachain.com;
+       font-src 'self' data:;
+     " />
+   </head>
+   <body>
+     <div id="root"></div>
+     <script type="module" src="/src/main.tsx"></script>
+   </body>
+ </html>

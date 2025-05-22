@@ -1,0 +1,115 @@
+ # CreataChain 기반 텔레그램 미션수행 게임 미니앱 - Render.com 배포 설정
+ 
+ services:
+   # PostgreSQL 데이터베이스
+   - type: pserv
+     name: creata-mission-db
+     env: docker
+     plan: starter  # 프로덕션에서는 standard 이상 권장
+     dockerfilePath: ./Dockerfile.postgres
+     envVars:
+       - key: POSTGRES_DB
+         value: creata_mission_game
+       - key: POSTGRES_USER
+         value: creata_admin
+       - key: POSTGRES_PASSWORD
+         generateValue: true
+ 
+   # 백엔드 API 서버
+   - type: web
+     name: creata-mission-backend
+     env: docker
+     plan: starter  # 프로덕션에서는 standard 이상 권장
+     dockerfilePath: ./Dockerfile
+     region: oregon  # 또는 singapore (아시아 지역)
+     buildCommand: docker build -t creata-mission .
+     startCommand: docker run -p $PORT:3000 creata-mission
+     
+     # 환경 변수 설정
+     envVars:
+       # 데이터베이스 연결
+       - key: DATABASE_URL
+         fromDatabase:
+           name: creata-mission-db
+           property: connectionString
+       
+       # 보안 관련
+       - key: JWT_SECRET
+         generateValue: true
+       - key: NODE_ENV
+         value: production
+       - key: PORT
+         value: 3000
+       
+       # 블록체인 관련 (하드코딩된 CreataChain 정보)
+       - key: CATENA_RPC_URL
+         value: https://cvm.node.creatachain.com
+       - key: CHAIN_ID
+         value: 1000
+       - key: BLOCK_EXPLORER_URL
+         value: https://catena.explorer.creatachain.com
+       
+       # 에어드랍용 프라이빗 키 (환경 변수로 별도 설정 필요)
+       - key: PRIVATE_KEY
+         sync: false  # 수동으로 Render 대시보드에서 설정
+       
+       # 애플리케이션 설정
+       - key: LOG_LEVEL
+         value: info
+       - key: SEED_DB
+         value: true
+       
+       # CORS 설정
+       - key: FRONTEND_URL
+         value: https://creata-mission-backend.onrender.com
+       - key: ALLOWED_ORIGINS
+         value: https://t.me,https://web.telegram.org
+ 
+     # 헬스 체크 설정
+     healthCheckPath: /health
+ 
+     # 도메인 설정 (선택적)
+     # domains:
+     #   - creata-mission-api.com
+ 
+   # 정적 파일 서빙 (프론트엔드)
+   - type: static
+     name: creata-mission-frontend
+     staticPublishPath: ./frontend/dist
+     buildCommand: |
+       cd frontend
+       npm ci
+       npm run build
+     
+     # 환경 변수
+     envVars:
+       - key: VITE_API_BASE_URL
+         value: https://creata-mission-backend.onrender.com
+       - key: VITE_TELEGRAM_BOT_TOKEN
+         sync: false  # 수동 설정 필요
+ 
+     # SPA 라우팅 지원
+     routes:
+       - type: rewrite
+         source: /*
+         destination: /index.html
+ 
+ # 추가 설정
+ # 데이터베이스 백업 (프로덕션 환경에서 권장)
+ # - type: cron
+ #   name: creata-mission-backup
+ #   schedule: "0 2 * * *"  # 매일 새벽 2시
+ #   command: pg_dump $DATABASE_URL > backup_$(date +%Y%m%d).sql
+ 
+ # 모니터링 및 알림 설정 (선택적)
+ # notifications:
+ #   - type: slack
+ #     webhook: $SLACK_WEBHOOK_URL
+ #   - type: email
+ #     email: admin@creatamission.com
+ 
+ # 리전별 배포 설정 (글로벌 서비스시)
+ # regions:
+ #   - oregon    # 미국 서부
+ #   - frankfurt # 유럽
+ #   - singapore # 아시아
