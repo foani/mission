@@ -1,0 +1,10 @@
+FROM postgres:15-alpine
+
+# Persist database data
+VOLUME ["/var/lib/postgresql/data"]
+
+# Expose default PostgreSQL port
+EXPOSE 5432
+
+# Use default entrypoint and command from base image
+
