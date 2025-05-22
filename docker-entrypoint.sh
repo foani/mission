@@ -51,7 +51,7 @@
  # 환경 변수 검증
  echo "🔍 Validating environment variables..."
  
- required_vars="DATABASE_URL JWT_SECRET PRIVATE_KEY CATENA_RPC_URL"
+required_vars="DATABASE_URL JWT_SECRET CATENA_PRIVATE_KEY CATENA_RPC_URL"
  for var in $required_vars; do
      if [ -z "$(eval echo \$$var)" ]; then
          echo "❌ ERROR: Required environment variable $var is not set"
