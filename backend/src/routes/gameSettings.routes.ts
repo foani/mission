@@ -22,15 +22,16 @@
          success: true,
          data: settings
        });
-     } catch (error) {
-       console.error('Error fetching game settings:', error);
-       return reply.status(500).send({
-         success: false,
-         message: 'Failed to fetch game settings'
-       });
-     }
-   
-     // 특정 게임 설정 조회
+    } catch (error) {
+      console.error('Error fetching game settings:', error);
+      return reply.status(500).send({
+        success: false,
+        message: 'Failed to fetch game settings'
+      });
+    }
+  });
+
+    // 특정 게임 설정 조회
      app.get('/settings/:gameType', async (request, reply) => {
        try {
          const { gameType } = request.params as { gameType: string };
@@ -50,14 +51,16 @@
            success: true,
            data: settings
          });
-       } catch (error) {
-         console.error('Error fetching game settings:', error);
-         return reply.status(500).send({
-           success: false,
-           message: 'Failed to fetch game settings'
-         });
-       
-         // 게임 설정 업데이트 (관리자 전용)
+      } catch (error) {
+        console.error('Error fetching game settings:', error);
+        return reply.status(500).send({
+          success: false,
+          message: 'Failed to fetch game settings'
+        });
+      }
+    });
+
+        // 게임 설정 업데이트 (관리자 전용)
          app.put('/settings/:gameType', {
            preHandler: async (request, reply) => {
              // TODO: JWT 인증 및 관리자 권한 확인
@@ -127,13 +130,15 @@
                message: 'Game settings updated successfully'
              });
            } catch (error) {
-             console.error('Error updating game settings:', error);
-             return reply.status(500).send({
-               success: false,
-               message: 'Failed to update game settings'
-             });
-           
-             // 게임 설정 초기화 (관리자 전용)
+            console.error('Error updating game settings:', error);
+            return reply.status(500).send({
+              success: false,
+              message: 'Failed to update game settings'
+            });
+          }
+        });
+
+            // 게임 설정 초기화 (관리자 전용)
              app.post('/settings/init', {
                preHandler: async (request, reply) => {
                  const authHeader = request.headers.authorization;

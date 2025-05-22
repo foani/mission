@@ -39,8 +39,10 @@ function createPrismaClient() {
         level: 'warn',
       },
     ],
-    errorFormat: 'pretty',
+  errorFormat: 'pretty',
   });
+
+}
 
 /**
  * 메인 Prisma 클라이언트 인스턴스
@@ -77,6 +79,7 @@ prisma.$on('info', (e) => {
 
 prisma.$on('warn', (e) => {
   console.warn('Prisma Warning:', e.message);
+});
 
 /**
  * 데이터베이스 연결 테스트 함수
@@ -132,7 +135,7 @@ export async function checkDatabaseHealth(): Promise<{
       error: error instanceof Error ? error.message : 'Unknown error',
     };
   }
-
+}
 /**
  * 트랜잭션 헬퍼 함수
  * 복잡한 비즈니스 로직에서 트랜잭션 사용을 간소화

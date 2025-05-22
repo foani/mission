@@ -54,6 +54,7 @@ const envSchema = z.object({
   // 텔레그램 봇 설정 (향후 확장용)
   TELEGRAM_BOT_TOKEN: z.string().optional(),
   TELEGRAM_WEBHOOK_URL: z.string().url().optional(),
+});
 
 /**
  * 환경변수 타입 정의
