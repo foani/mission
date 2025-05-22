@@ -115,9 +115,9 @@ npm start
 - **스타일링**: Tailwind CSS
 
 ## 📊 랭킹 시스템
-
-- **Diamond**: 상위 1% - 월 1000 CTA
-- **Platinum**: 상위 5% - 월 500 CTA
+  격월로 진행 예정 ( 바뀔수 있음)
+- **Diamond**: 상위 1% - 월 1000 CTA + 200 USDT ?
+- **Platinum**: 상위 5% - 월 500 CTA 
 - **Gold**: 상위 10% - 월 200 CTA
 - **Silver**: 상위 25% - 월 100 CTA
 - **Bronze**: 상위 50% - 월 50 CTA
@@ -157,13 +157,9 @@ docker run -p 3000:3000 creata-mission
 
 MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참고하세요.
 
-## 🤝 기여
+## 🤝 배껴가시려면 USDT 주셔요.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+ Fork the Project 10,000 USDT
 
 ## 링크
 
@@ -174,5 +170,5 @@ MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참고하세요.
 
 ---
 
-**만든 이**: CreataChain Team  
-**마지막 업데이트**: 2025년 5월
+**만든 이**: Tori Team  
+**마지막 업데이트**: 2025년 5월 22일
