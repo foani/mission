@@ -165,12 +165,12 @@ MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일을 참고하세요.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📞 났락트
+## 링크
 
 - **공식 웹사이트**: https://creatachain.com
-- **텔레그램**: https://t.me/creatachain
-- **트위터**: https://twitter.com/creatachain
-- **이메일**: team@creatachain.com
+- **텔레그램**: https://t.me/creatachain_chat
+- **트위터**: 
+- **이메일**: kiikiihajohn@gmail.com
 
 ---
 
